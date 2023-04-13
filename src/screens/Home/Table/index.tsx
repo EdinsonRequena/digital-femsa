@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 
 type Props = {
   product: string;
@@ -21,9 +21,14 @@ export const Table = ({
         <Text style={styles.name}>{product}</Text>
         <Text style={styles.createdAt}>{createdAt}</Text>
       </View>
-      <Text style={styles.price}>
-        +{points} {'>'}
-      </Text>
+      <Pressable
+        onPress={() => {
+          console.log('Pressed');
+        }}>
+        <Text style={styles.price}>
+          +{points} {'>'}
+        </Text>
+      </Pressable>
     </View>
   );
 };
