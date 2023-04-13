@@ -1,8 +1,9 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 
 import {ButtonComponent} from '../../components/Button/Button';
 import {Header} from './Header';
+import {Card} from './Card';
 
 export const Home = () => {
   return (
@@ -13,6 +14,8 @@ export const Home = () => {
         alignItems: 'center',
       }}>
       <Header user="Edinson Requena" />
+      <Card month="Diciembre" pts="10.000,00" />
+      <Text />
       <ButtonComponent title="Hola" />
     </View>
   );
