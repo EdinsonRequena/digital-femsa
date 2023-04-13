@@ -1,30 +1,31 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import {Product} from '../../../utils/types';
 
-type Props = {
-  product: string;
-  createdAt: string;
-  points: string;
-  image: string;
-};
+interface Props extends Product {
+  onPress: (product: Product) => void;
+}
 
 export const Table = ({
   product,
   createdAt,
   points,
   image,
+  onPress,
 }: Props): JSX.Element => {
+  const _onPress = () => {
+    console.log(image);
+    onPress({product, createdAt, points, image});
+  };
+
   return (
     <View style={styles.row}>
-      <Image source={image} style={styles.image} />
+      <Image source={{uri: image}} style={styles.image} />
       <View style={styles.info}>
         <Text style={styles.name}>{product}</Text>
         <Text style={styles.createdAt}>{createdAt}</Text>
       </View>
-      <Pressable
-        onPress={() => {
-          console.log('Pressed');
-        }}>
+      <Pressable onPress={_onPress}>
         <Text style={styles.price}>
           +{points} {'>'}
         </Text>

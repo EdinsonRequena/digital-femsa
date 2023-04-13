@@ -7,11 +7,17 @@ import type {StyleProp} from 'react-native';
 type Props = {
   title: string;
   style?: StyleProp<any>;
+  onPress: () => void;
 };
 
-export const ButtonComponent = ({title, style}: Props): JSX.Element => {
+export const ButtonComponent = ({
+  title,
+  onPress,
+  style,
+}: Props): JSX.Element => {
   return (
     <Button
+      onPress={onPress}
       containerStyle={style}
       buttonStyle={styles.container}
       style={style}
@@ -25,6 +31,6 @@ const styles = StyleSheet.create({
     width: 353,
     height: 50,
     borderRadius: 10,
-    color: '#334FFA',
+    backgroundColor: '#334FFA',
   },
 });
