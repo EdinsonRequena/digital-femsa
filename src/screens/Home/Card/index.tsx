@@ -1,14 +1,17 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
+import type {StyleProp} from 'react-native';
+
 type Props = {
   month: string;
   pts: string;
+  style?: StyleProp<any>;
 };
 
-export const Card = ({month, pts}: Props): JSX.Element => {
+export const Card = ({month, pts, style}: Props): JSX.Element => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <Text style={styles.month}>{month}</Text>
       <Text style={styles.pts}>{pts} pts</Text>
     </View>
@@ -21,11 +24,14 @@ const styles = StyleSheet.create({
     width: 286,
     height: 143,
     borderRadius: 20,
-    elevation: 10,
-    shadowColor: '#000000',
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    shadowOffset: {width: 0, height: 5},
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
   },
   month: {
     color: '#FFFFFF',

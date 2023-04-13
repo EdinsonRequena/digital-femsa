@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Button} from 'react-native-elements';
 
 import type {StyleProp} from 'react-native';
@@ -10,7 +10,14 @@ type Props = {
 };
 
 export const ButtonComponent = ({title, style}: Props): JSX.Element => {
-  return <Button buttonStyle={styles.container} style={style} title={title} />;
+  return (
+    <Button
+      containerStyle={style}
+      buttonStyle={styles.container}
+      style={style}
+      title={title}
+    />
+  );
 };
 
 const styles = StyleSheet.create({
