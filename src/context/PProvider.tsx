@@ -1,6 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import {StatusBar, View} from 'react-native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import React, {useState, useEffect, useCallback} from 'react';
 
 import PContext from './PContext';
 
@@ -16,13 +14,13 @@ const PProvider = ({children}: Props) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const handleSelectProduct = (product: Product) => {
-    setSelectedProduct(product);
-  };
-
-  const handleSetProducts = (data: Product[]) => {
+  const handleSetProducts = useCallback((data: Product[]) => {
     setProducts(data);
-  };
+  }, []);
+
+  const handleSelectProduct = useCallback((product: Product) => {
+    setSelectedProduct(product);
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -31,22 +29,17 @@ const PProvider = ({children}: Props) => {
     };
 
     fetchProducts();
-  }, []);
+  }, [handleSetProducts]);
 
   return (
     <PContext.Provider
       value={{
         products,
-        selectedProduct,
         setProducts: handleSetProducts,
+        selectedProduct,
         setSelectedProduct: handleSelectProduct,
       }}>
-      <StatusBar
-        backgroundColor="transparent"
-        barStyle="dark-content"
-        translucent={true}
-      />
-      <SafeAreaProvider>{children}</SafeAreaProvider>
+      {children}
     </PContext.Provider>
   );
 };
