@@ -1,7 +1,7 @@
 import {createContext} from 'react';
 import type {Product} from 'utils/types';
 
-interface ProductContextProps {
+export interface ProductContextProps {
   products: Product[];
   setProducts: (data: Product[]) => void;
   selectedProduct: Product | null;

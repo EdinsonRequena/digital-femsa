@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import PContext from '../../context/PContext';
 import {ROUTES} from '../../router/routes';
 
-import ImageCard from './components/ImageCard';
+import ImageCard from './ImageCard';
 import {ButtonComponent} from '../../components/Button/Button';
 
 export const DetailProduct = (): JSX.Element => {

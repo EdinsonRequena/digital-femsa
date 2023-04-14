@@ -1,19 +1,25 @@
-import React, {useContext} from 'react';
+// Vendors
+import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {View, Text, ScrollView, StyleSheet} from 'react-native';
 
-import PContext from '../../context/PContext';
+// Routes
 import {ROUTES} from '../../router/routes';
 
+// Components
 import {ButtonComponent} from '../../components/Button/Button';
 import {Header} from './Header';
 import {Card} from './Card';
 import {Table} from './Table';
 
+// Hooks
+import {useProducts} from '../../hooks/useProducts';
+
+// Types
 import {Product} from 'utils/types';
 
 export const Home = () => {
-  const {setSelectedProduct, products} = useContext(PContext);
+  const {setSelectedProduct, products} = useProducts();
 
   const navigation = useNavigation();
 
@@ -45,6 +51,7 @@ export const Home = () => {
             onPress={goToDetail}
           />
         ))}
+        <ButtonComponent style={styles.button} title="Canjeados" />
         <ButtonComponent style={styles.button} title="Hola" />
       </View>
     </ScrollView>
