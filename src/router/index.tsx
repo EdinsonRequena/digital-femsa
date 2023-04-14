@@ -5,16 +5,11 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {ROUTES} from './routes';
 
-import {Home} from '../screens/Home/Home';
+import {Home} from '../screens/Home';
 import {DetailProduct} from '../screens/DetailProduct';
 
 const Stack = createStackNavigator();
 
-/**
- * Root Navigator component that defines the navigation structure of the app.
- *
- * @returns {JSX.Element} The root navigator element.
- */
 const RootNavigator = (): JSX.Element => {
   return (
     <NavigationContainer>

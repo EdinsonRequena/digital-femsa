@@ -5,7 +5,7 @@ import type {StyleProp} from 'react-native';
 
 type Props = {
   month: string;
-  pts: string;
+  pts: number;
   style?: StyleProp<any>;
 };
 

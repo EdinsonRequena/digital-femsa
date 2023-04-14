@@ -1,20 +1,19 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Text, View, StyleSheet, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import PContext from '../../context/PContext';
-import {ROUTES} from '../../router/routes';
+import {formatDate} from '../../utils/date';
 
 import ImageCard from './ImageCard';
+
+import {useProducts} from '../../hooks/useProducts';
+
 import {ButtonComponent} from '../../components/Button/Button';
 
 export const DetailProduct = (): JSX.Element => {
-  const {selectedProduct} = useContext(PContext);
+  const {selectedProduct} = useProducts();
 
-  const navigation = useNavigation();
-  const goBack = () => {
-    navigation.navigate(ROUTES.HOME);
-  };
+  const {goBack} = useNavigation();
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -23,11 +22,15 @@ export const DetailProduct = (): JSX.Element => {
         <View style={styles.infoContent}>
           <Text style={styles.label}>Detalles del producto:</Text>
           <Text style={styles.date}>
-            Comprado el {selectedProduct?.createdAt}
+            Comprado el {formatDate(selectedProduct?.createdAt)}
           </Text>
           <Text style={styles.label}>Con esta compra acumulaste:</Text>
           <Text style={styles.points}>{selectedProduct?.points}</Text>
-          <ButtonComponent onPress={goBack} title="Aceptar" />
+          <ButtonComponent
+            style={styles.button}
+            onPress={goBack}
+            title="Aceptar"
+          />
         </View>
       </View>
     </ScrollView>
@@ -53,6 +56,9 @@ const styles = StyleSheet.create({
   content: {
     width: 354,
     alignItems: 'center',
+  },
+  button: {
+    width: 354,
   },
   infoContent: {
     marginTop: 32,
