@@ -1,5 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+  ScrollView,
+  FlatList,
+} from 'react-native';
 import {Product} from '../../../utils/types';
 
 interface Props extends Product {

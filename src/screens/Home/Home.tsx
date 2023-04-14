@@ -24,12 +24,16 @@ export const Home = () => {
     });
   };
 
+  const totalPoints = products
+    .filter(product => product.is_redemption === true)
+    .reduce((acc, product) => acc + product.points, 0);
+
   return (
     <ScrollView>
       <View style={styles.container}>
         <Header style={styles.header} user="Edinson Requena" />
         <Text style={styles.text}>TUS PUNTOS</Text>
-        <Card style={styles.card} month="Diciembre" pts="10.000,00" />
+        <Card style={styles.card} month="Diciembre" pts={totalPoints} />
         <Text style={styles.text}>TUS MOVIMIENTOS</Text>
         {products.map(product => (
           <Table
