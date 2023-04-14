@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+
 import {Product} from '../../../utils/types';
+import {formatDate} from '../../../utils/date';
 
 interface Props extends Product {
   onPress: (product: Product) => void;
@@ -8,29 +10,36 @@ interface Props extends Product {
 
 export const Table = ({
   product,
+  id,
   createdAt,
+  is_redemption,
   points,
   image,
   onPress,
 }: Props): JSX.Element => {
   const _onPress = () => {
-    console.log(image);
-    onPress({product, createdAt, points, image});
+    onPress({id, product, createdAt, is_redemption, points, image});
   };
 
   return (
-    <View style={styles.row}>
+    <Pressable testID="pressable-element" onPress={_onPress} style={styles.row}>
       <Image testID="table-image" source={{uri: image}} style={styles.image} />
       <View style={styles.info}>
         <Text style={styles.name}>{product}</Text>
-        <Text style={styles.createdAt}>{createdAt}</Text>
+        <Text style={styles.createdAt}>{formatDate(createdAt)}</Text>
       </View>
-      <Pressable testID="pressable-element" onPress={_onPress}>
-        <Text style={styles.price}>
-          +{points} {'>'}
+      <View style={styles.contentPrice}>
+        <Text
+          style={[
+            styles.price,
+            !is_redemption ? styles.positive : styles.negative,
+          ]}>
+          {!is_redemption ? '+' : '-'}
         </Text>
-      </Pressable>
-    </View>
+        <Text style={styles.price}> {points}</Text>
+        <Text style={[styles.price, styles.chevron]}>{'>'}</Text>
+      </View>
+    </Pressable>
   );
 };
 
@@ -38,15 +47,14 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 8,
     paddingHorizontal: 16,
-    marginHorizontal: 8,
-    backgroundColor: '#fff',
+    marginBottom: 10,
   },
   image: {
-    width: 50,
-    height: 50,
+    width: 55,
+    height: 55,
     marginRight: 16,
+    borderRadius: 10,
   },
   info: {
     flex: 1,
@@ -55,8 +63,7 @@ const styles = StyleSheet.create({
   name: {
     fontWeight: '800',
     fontSize: 14,
-    lineHeight: 19.12,
-    marginBottom: 4,
+    marginBottom: 7,
     fontFamily: 'Avenir',
     color: '#000000',
   },
@@ -68,12 +75,23 @@ const styles = StyleSheet.create({
     lineHeight: 16.39,
     marginBottom: 4,
   },
+  positive: {
+    color: '#00B833',
+  },
+  negative: {
+    color: '#FF0000',
+  },
+  chevron: {
+    marginLeft: 12,
+  },
+  contentPrice: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
   price: {
     color: '#000000',
     fontWeight: '800',
     fontFamily: 'Avenir',
-    size: 16,
-    lineHeight: 21.86,
-    fontSize: 18,
+    fontSize: 16,
   },
 });

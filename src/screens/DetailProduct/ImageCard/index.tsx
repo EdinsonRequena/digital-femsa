@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 
-import productImage from '../../../../assets/product.png';
+import productImage from '../../../assets/product.png';
 
 type ImageCardProps = {
   src?: string;
