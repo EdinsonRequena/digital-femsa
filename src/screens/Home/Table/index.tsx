@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Pressable,
-  ScrollView,
-  FlatList,
-} from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import {Product} from '../../../utils/types';
 
 interface Props extends Product {
@@ -28,12 +20,12 @@ export const Table = ({
 
   return (
     <View style={styles.row}>
-      <Image source={{uri: image}} style={styles.image} />
+      <Image testID="table-image" source={{uri: image}} style={styles.image} />
       <View style={styles.info}>
         <Text style={styles.name}>{product}</Text>
         <Text style={styles.createdAt}>{createdAt}</Text>
       </View>
-      <Pressable onPress={_onPress}>
+      <Pressable testID="pressable-element" onPress={_onPress}>
         <Text style={styles.price}>
           +{points} {'>'}
         </Text>
