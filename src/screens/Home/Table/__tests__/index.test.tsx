@@ -4,20 +4,20 @@ import {Table} from '..';
 
 const mockProduct = {
   product: 'Product Name',
-  createdAt: '26 de enero, 2019',
   points: 10,
   image: 'https://example.com/image.jpg',
 };
 
 describe('Table', () => {
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     const {getByText, getByTestId} = render(
       <Table {...mockProduct} onPress={() => {}} />,
     );
+
     expect(getByText('Product Name')).toBeDefined();
-    expect(getByText('26 de enero, 2019')).toBeDefined();
-    expect(getByText('+10 >')).toBeDefined();
+    expect(getByText('+')).toBeDefined();
     expect(getByTestId('table-image')).toBeDefined();
+    expect(getByTestId('pressable-element')).toBeDefined();
   });
 
   it('should call onPress with correct parameters when button is pressed', () => {

@@ -22,8 +22,8 @@ export const Table = ({
   };
 
   return (
-    <Pressable onPress={_onPress} style={styles.row}>
-      <Image source={{uri: image}} style={styles.image} />
+    <Pressable testID="pressable-element" onPress={_onPress} style={styles.row}>
+      <Image testID="table-image" source={{uri: image}} style={styles.image} />
       <View style={styles.info}>
         <Text style={styles.name}>{product}</Text>
         <Text style={styles.createdAt}>{formatDate(createdAt)}</Text>

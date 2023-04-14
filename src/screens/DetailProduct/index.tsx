@@ -8,7 +8,7 @@ import ImageCard from './ImageCard';
 
 import {useProducts} from '../../hooks/useProducts';
 
-import {ButtonComponent} from '../../components/Button/Button';
+import {ButtonComponent} from '../../components/Button';
 
 export const DetailProduct = (): JSX.Element => {
   const {selectedProduct} = useProducts();

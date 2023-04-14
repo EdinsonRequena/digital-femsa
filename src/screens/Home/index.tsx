@@ -4,7 +4,7 @@ import {View, Text, ScrollView, StyleSheet} from 'react-native';
 
 import {ROUTES} from '../../router/routes';
 
-import {ButtonComponent} from '../../components/Button/Button';
+import {ButtonComponent} from '../../components/Button';
 import {Header} from './Header';
 import {Card} from './Card';
 import {Table} from './Table';
